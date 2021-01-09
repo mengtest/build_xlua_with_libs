@@ -53,6 +53,39 @@ list(APPEND THIRDPART_INC  lua-rapidjson/include)
 set (THIRDPART_SRC ${THIRDPART_SRC} ${RAPIDJSON_SRC})
 #end lua-rapidjson
 
+#begin skiplist
+set ( SKIPLIST_SRC
+    skiplist/skiplist.c
+    skiplist/lua-skiplist.c
+)
+set_property(
+    SOURCE ${SKIPLIST_SRC}
+    APPEND
+    PROPERTY COMPILE_DEFINITIONS
+    LUA_LIB
+)
+list(APPEND THIRDPART_INC  skiplist)
+set (THIRDPART_SRC ${THIRDPART_SRC} ${SKIPLIST_SRC})
+#end skiplist
+
+#begin rc4
+set ( RC4_SRC
+    rc4/base64.c
+    rc4/crc.c
+    rc4/md5.c
+    rc4/rc4.c
+    rc4/lrc4.c
+)
+set_property(
+    SOURCE ${RC4_SRC}
+    APPEND
+    PROPERTY COMPILE_DEFINITIONS
+    LUA_LIB
+)
+list(APPEND THIRDPART_INC  rc4)
+set (THIRDPART_SRC ${THIRDPART_SRC} ${RC4_SRC})
+#end rc4
+
 if (NOT PBC)
 	#begin lua-profobuf
 	set (LPB_SRC 
@@ -134,6 +167,21 @@ if (NOT USING_LUAJIT)
 	set (THIRDPART_SRC ${THIRDPART_SRC} ${FFI_SRC})
 endif ()
 #end FFI
+
+#begin lsqlite3
+set ( LSQLITE3_SRC
+    lsqlite3/sqlite3.c
+    lsqlite3/lsqlite3.c
+)
+set_property(
+    SOURCE ${LSQLITE3_SRC}
+    APPEND
+    PROPERTY COMPILE_DEFINITIONS
+    LUA_LIB
+)
+list(APPEND THIRDPART_INC  lsqlite3)
+set (THIRDPART_SRC ${THIRDPART_SRC} ${LSQLITE3_SRC})
+#end lsqlite3
 
 if (USING_LUAJIT)
 	
