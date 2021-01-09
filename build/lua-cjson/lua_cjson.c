@@ -80,6 +80,11 @@
 #define DEFAULT_DECODE_INVALID_NUMBERS 0
 #endif
 
+#ifdef _MSC_VER 
+#define strncasecmp _strnicmp
+#define strcasecmp _stricmp
+#endif
+
 typedef enum {
     T_OBJ_BEGIN,
     T_OBJ_END,
